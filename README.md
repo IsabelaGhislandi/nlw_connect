@@ -51,7 +51,7 @@ npx drizzle-kit push:pg
 5. **Start the server**
 npm run dev
 
-##📊 Database
+## 📊 Database
 subscriptions table structure
 
 CREATE TABLE subscriptions (
@@ -66,7 +66,7 @@ CREATE TABLE subscriptions (
 Sorted Set: referral:ranking - User ranking by score
 Hash: referral:access-count - Access count per user
 
-##🔗 API Endpoints
+## 🔗 API Endpoints
 
 **Subscriptions**
 - POST /subscription - Create new subscription
@@ -79,7 +79,7 @@ Hash: referral:access-count - Access count per user
 - GET /ranking - Get complete ranking
 - GET /subscribers/{id}/ranking/position - Get specific ranking position
 
-##📝 Usage Examples
+## 📝 Usage Examples
 
 **Create a subscription**
 curl -X POST http://localhost:3333/subscription \
@@ -94,7 +94,7 @@ curl -X POST http://localhost:3333/subscription \
 **Get ranking**
 curl http://localhost:3333/ranking
 
-##🏗️ Project Structure
+## 🏗️ Project Structure
 src/
 ├── drizzle/
 │   ├── client.ts          # Drizzle ORM configuration
@@ -106,11 +106,11 @@ src/
 ├── env.ts               # Environment variables configuration
 └── server.ts            # Server configuration
 
-##🧪 Available Scripts
+## 🧪 Available Scripts
 npm run dev        # Start development server
 npm run build      # Build for production
 
-##🐳 Docker
+## 🐳 Docker
 To run PostgreSQL and Redis with Docker:
 
 # PostgreSQL
