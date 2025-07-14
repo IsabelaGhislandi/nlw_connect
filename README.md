@@ -11,7 +11,7 @@ A ranking application with referral system developed during NLW (Next Level Week
 - **REST API**: Complete endpoints for all functionalities
 - **Auto Documentation**: Integrated Swagger UI
 
-## 🛠️ Technologies Used
+## 🛠️ Technologies Used 
 
 - **Backend**: Node.js with Fastify
 - **Database**: PostgreSQL with Drizzle ORM
@@ -94,7 +94,7 @@ curl -X POST http://localhost:3333/subscription \
 **Get ranking**
 curl http://localhost:3333/ranking
 
-##🏗️ Project Structure##
+##🏗️ Project Structure
 src/
 ├── drizzle/
 │   ├── client.ts          # Drizzle ORM configuration
@@ -106,7 +106,7 @@ src/
 ├── env.ts               # Environment variables configuration
 └── server.ts            # Server configuration
 
-##🧪 Available Scripts##
+##🧪 Available Scripts
 npm run dev        # Start development server
 npm run build      # Build for production
 
@@ -128,7 +128,7 @@ docker run -d \
   -p 6379:6379 \
   redis:alpine
 
-##📈 How the Ranking System Works##
+##📈 How the Ranking System Works
 1. Registration: User signs up optionally with referral code
 2. Scoring: Referring user gains 1 point
 3. Link Access: Each click on invite link increments counter
