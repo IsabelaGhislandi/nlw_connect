@@ -151,8 +151,13 @@ curl http://localhost:3333/ranking
 }
 ```
 ## 🧪 Available Scripts
+```
 npm run dev        # Start development server
+```
+
+```
 npm run build      # Build for production
+```
 
 
 ## 📈 How the Ranking System Works
