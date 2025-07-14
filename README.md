@@ -65,7 +65,7 @@ npx drizzle-kit push
 ```
 npm run dev
 ```
-##📊 Database Schema
+## 📊 Database Schema
 subscriptions table
 ```
 CREATE TABLE subscriptions (
