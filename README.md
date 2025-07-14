@@ -107,16 +107,27 @@ Hash: referral:access-count - Access count per user
 
 ## 📝 Usage Examples
 
-### Create a subscription
+### Create a subscription with referrer
 ```
 POST /subscription
 Content-Type: application/json
 
 {
-  "name": "John Doe",
-  "email": "john@email.com",
+  "name": "Terry Riley",
+  "email": "terry@email.com",
   "telephone": "11999999999",
   "referrer": "referring-user-uuid"
+}
+```
+...or without referrer
+```
+POST /subscription
+Content-Type: application/json
+
+{
+  "name": "Tony Conrad",
+  "email": "Tony@email.com",
+  "telephone": "11999999999",
 }
 ```
 **Get ranking**
