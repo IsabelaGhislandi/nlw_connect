@@ -29,30 +29,51 @@ A ranking application with referral system developed during NLW (Next Level Week
 
 ## 🔧 Installation
 
-1. **Clone the repository**
+**1. Clone the repository**
 git clone https://github.com/IsabelaGhislandi/nlw_connect.git
 cd nlw_connect
 
-2. **Install dependencies**
+**2. Install dependencies**
 npm install
 
-3. **Configure environment variables**
-cp .env.example .env
+**3. Configure environment variables**
+Create a `.env` file in the root directory:
 
 Edit the .env file with your settings:
-PORT=3333
-POSTGRES_URL="postgresql://docker:docker@localhost:5432/connect"
-REDIS_URL="redis://localhost:6379"
-WEB_URL="http://localhost:3333"
+PORT=3333 POSTGRES_URL="postgresql://docker:docker@localhost:5432/connect" REDIS_URL="redis://localhost:6379" WEB_URL="http://localhost:3333"
 
-4. **Run database migrations**
-npx drizzle-kit push:pg
+**4. Start the services with Docker**
+docker-compose up -d
 
-5. **Start the server**
+**5. Run database migrations**
+npx drizzle-kit push
+
+**6. Start the development server**
 npm run dev
 
-## 📊 Database
-subscriptions table structure
+## 🗃️ Database Setup
+### Using Docker Compose (Recommended)
+The project includes a `docker-compose.yml` file with PostgreSQL and Redis services:
+
+``yaml
+services:
+    service-pg: 
+        image: bitnami/postgresql
+        ports:
+            - '5432:5432'
+        environment:
+            - POSTGRES_USER=docker
+            - POSTGRES_PASSWORD=docker
+            - POSTGRES_DB=connect
+    service-redis:
+        image: bitnami/redis
+        ports:
+            - '6379:6379'
+        environment:
+            - ALLOW_EMPTY_PASSWORD=yes
+            
+##📊 Database Schema
+subscriptions table
 
 CREATE TABLE subscriptions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -68,65 +89,67 @@ Hash: referral:access-count - Access count per user
 
 ## 🔗 API Endpoints
 
-**Subscriptions**
-- POST /subscription - Create new subscription
-- GET /subscribers/{id}/ranking/clicks - Get user clicks
+## 🔗 API Endpoints
 
-**Invites**
-- GET /invites/{subscriberId} - Access invite link (redirects)
+### Subscriptions
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/subscription` | Create new subscription |
+| `GET` | `/subscribers/{id}/ranking/clicks` | Get user clicks |
 
-**Ranking**
-- GET /ranking - Get complete ranking
-- GET /subscribers/{id}/ranking/position - Get specific ranking position
+### Invites
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/invites/{subscriberId}` | Access invite link (redirects) |
+
+### Ranking
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/ranking` | Get complete ranking |
+| `GET` | `/subscribers/{id}/ranking/position` | Get specific ranking position |
+
+### Documentation
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/docs` | Swagger UI |
 
 ## 📝 Usage Examples
 
-**Create a subscription**
-curl -X POST http://localhost:3333/subscription \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Sponge bob",
-    "email": "bob@email.com",
-    "telephone": "11999999999",
-    "referrer": "referring-user-uuid"
-  }'
+### Create a subscription
+``json
+POST /subscription
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@email.com",
+  "telephone": "11999999999",
+  "referrer": "referring-user-uuid"
+}
   
 **Get ranking**
 curl http://localhost:3333/ranking
 
-## 🏗️ Project Structure
-src/
-├── drizzle/
-│   ├── client.ts          # Drizzle ORM configuration
-│   ├── migrations/        # Database migrations
-│   └── tables/           # Table definitions
-├── functions/            # Business logic
-├── redis/               # Redis client and configurations
-├── routes/              # API routes
-├── env.ts               # Environment variables configuration
-└── server.ts            # Server configuration
+**Response example**
+{
+  "ranking": [
+    {
+      "id": "USER ZERO",
+      "name": "Sponge Bob",
+      "score": 10
+    },
+    {
+      "id": "USER ONE",
+      "name": "Patrick",
+      "score": 8
+    }
+  ]
+}
 
 ## 🧪 Available Scripts
 npm run dev        # Start development server
 npm run build      # Build for production
 
-## 🐳 Docker
-To run PostgreSQL and Redis with Docker:
-
-# PostgreSQL
-docker run -d \
-  --name postgres \
-  -e POSTGRES_USER=docker \
-  -e POSTGRES_PASSWORD=docker \
-  -e POSTGRES_DB=connect \
-  -p 5432:5432 \
-  postgres:13
-
-# Redis
-docker run -d \
-  --name redis \
-  -p 6379:6379 \
-  redis:alpine
 
 ##📈 How the Ranking System Works
 1. Registration: User signs up optionally with referral code
