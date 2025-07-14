@@ -155,7 +155,7 @@ npm run dev        # Start development server
 npm run build      # Build for production
 
 
-##📈 How the Ranking System Works
+## 📈 How the Ranking System Works
 1. Registration: User signs up optionally with referral code
 2. Scoring: Referring user gains 1 point
 3. Link Access: Each click on invite link increments counter
