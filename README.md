@@ -30,51 +30,44 @@ A ranking application with referral system developed during NLW (Next Level Week
 ## 🔧 Installation
 
 **1. Clone the repository**
+```bash
 git clone https://github.com/IsabelaGhislandi/nlw_connect.git
 cd nlw_connect
+```
 
 **2. Install dependencies**
+```
 npm install
+```
 
 **3. Configure environment variables**
 Create a `.env` file in the root directory:
 
 Edit the .env file with your settings:
-PORT=3333 POSTGRES_URL="postgresql://docker:docker@localhost:5432/connect" REDIS_URL="redis://localhost:6379" WEB_URL="http://localhost:3333"
+```
+PORT=3333 
+POSTGRES_URL="postgresql://docker:docker@localhost:5432/connect" 
+REDIS_URL="redis://localhost:6379" 
+WEB_URL="http://localhost:3333"
+```
 
 **4. Start the services with Docker**
+```
 docker-compose up -d
+```
 
 **5. Run database migrations**
+```
 npx drizzle-kit push
+```
 
 **6. Start the development server**
+```
 npm run dev
-
-## 🗃️ Database Setup
-### Using Docker Compose (Recommended)
-The project includes a `docker-compose.yml` file with PostgreSQL and Redis services:
-
-``yaml
-services:
-    service-pg: 
-        image: bitnami/postgresql
-        ports:
-            - '5432:5432'
-        environment:
-            - POSTGRES_USER=docker
-            - POSTGRES_PASSWORD=docker
-            - POSTGRES_DB=connect
-    service-redis:
-        image: bitnami/redis
-        ports:
-            - '6379:6379'
-        environment:
-            - ALLOW_EMPTY_PASSWORD=yes
-            
+```
 ##📊 Database Schema
 subscriptions table
-
+```
 CREATE TABLE subscriptions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name TEXT NOT NULL,
@@ -82,12 +75,11 @@ CREATE TABLE subscriptions (
   telephone TEXT NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT now()
 );
+```
 
 **Redis - Data structures used**
 Sorted Set: referral:ranking - User ranking by score
 Hash: referral:access-count - Access count per user
-
-## 🔗 API Endpoints
 
 ## 🔗 API Endpoints
 
@@ -116,7 +108,7 @@ Hash: referral:access-count - Access count per user
 ## 📝 Usage Examples
 
 ### Create a subscription
-``json
+```
 POST /subscription
 Content-Type: application/json
 
@@ -126,11 +118,12 @@ Content-Type: application/json
   "telephone": "11999999999",
   "referrer": "referring-user-uuid"
 }
-  
+```
 **Get ranking**
 curl http://localhost:3333/ranking
 
 **Response example**
+```
 {
   "ranking": [
     {
@@ -145,7 +138,7 @@ curl http://localhost:3333/ranking
     }
   ]
 }
-
+```
 ## 🧪 Available Scripts
 npm run dev        # Start development server
 npm run build      # Build for production
