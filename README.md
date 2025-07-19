@@ -2,7 +2,7 @@
 
 A ranking application with referral system developed during NLW (Next Level Week). Allows users to register for events through invite links and track their position in the ranking.
 
-## 🚀 Features
+## Features
 
 - **User Registration**: User signup with name, email, and phone
 - **Invite Links**: Automatic generation of unique referral links
@@ -11,7 +11,7 @@ A ranking application with referral system developed during NLW (Next Level Week
 - **REST API**: Complete endpoints for all functionalities
 - **Auto Documentation**: Integrated Swagger UI
 
-## 🛠️ Technologies Used 
+## Technologies Used 
 
 - **Backend**: Node.js with Fastify
 - **Database**: PostgreSQL with Drizzle ORM
@@ -20,14 +20,14 @@ A ranking application with referral system developed during NLW (Next Level Week
 - **Documentation**: Swagger/OpenAPI
 - **Language**: TypeScript
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Node.js (version 18 or higher)
 - PostgreSQL
 - Redis
 - npm or yarn
 
-## 🔧 Installation
+## Installation
 
 **1. Clone the repository**
 ```bash
@@ -65,7 +65,7 @@ npx drizzle-kit push
 ```
 npm run dev
 ```
-## 📊 Database Schema
+## Database Schema
 subscriptions table
 ```
 CREATE TABLE subscriptions (
@@ -81,7 +81,7 @@ CREATE TABLE subscriptions (
 Sorted Set: referral:ranking - User ranking by score
 Hash: referral:access-count - Access count per user
 
-## 🔗 API Endpoints
+## API Endpoints
 
 ### Subscriptions
 | Method | Endpoint | Description |
@@ -105,7 +105,7 @@ Hash: referral:access-count - Access count per user
 |--------|----------|-------------|
 | `GET` | `/docs` | Swagger UI |
 
-## 📝 Usage Examples
+## Usage Examples
 
 ### Create a subscription with referrer
 ```
@@ -150,7 +150,7 @@ curl http://localhost:3333/ranking
   ]
 }
 ```
-## 🧪 Available Scripts
+## Available Scripts
 ```
 npm run dev        # Start development server
 ```
@@ -160,7 +160,7 @@ npm run build      # Build for production
 ```
 
 
-## 📈 How the Ranking System Works
+## How the Ranking System Works
 1. Registration: User signs up optionally with referral code
 2. Scoring: Referring user gains 1 point
 3. Link Access: Each click on invite link increments counter
